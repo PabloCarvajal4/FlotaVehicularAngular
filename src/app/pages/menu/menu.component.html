@@ -6,22 +6,16 @@
               [(nzCollapsed)]="isCollapsed"
               [nzTrigger]="null">
       <div class="sidebar-logo">
-        <a href="https://ng.ant.design/" target="_blank">
-          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-          <h1>Ant Design Of Angular</h1>
-        </a>
+       
+          <img src="https://i.pinimg.com/originals/f0/dd/ec/f0ddec76cda8ee2756e663924856f81e.png" alt="logo">
+          <a>Flota Vehicular App</a>
+        
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
         <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
           <ul>
             <li nz-menu-item nzMatchRouter>
               <a routerLink="/welcome">Welcome</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <a>Monitor</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <a>Workplace</a>
             </li>
           </ul>
         </li>
@@ -30,6 +24,29 @@
             <li nz-menu-item nzMatchRouter>
               <a routerLink="/transportistas">Transportistas</a>
             </li>
+          </ul>
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/rutas">Rutas</a>
+            </li>
+          </ul>
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/recorridos">Recorridos</a>
+            </li>
+          </ul>
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/vehiculos">Vehiculos</a>
+            </li>
+          </ul>
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/posiciones">Posiciones</a>
+            </li> <ul>
+            <li nz-menu-item (click)="salir()">
+              <a><i nz-icon nzType="logout" nzTheme="outline"></i> Cerrar Sesión</a>
+            </li></ul>
           </ul>
         </li>
       </ul>

@@ -4,6 +4,11 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { TransportistasComponent } from './pages/transportistas/transportistas.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { LoginComponent } from './pages/login/login.component';
+import { RutasComponent } from './pages/rutas/rutas.component';
+import { RutasControllerService } from './api/services';
+import { RecorridosComponent } from './pages/recorridos/recorridos.component';
+import { PosicionesComponent } from './pages/posiciones/posiciones.component';
+import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
@@ -12,8 +17,10 @@ const routes: Routes = [
     children:[
       {path:'welcome',component:WelcomeComponent},
       {path:'transportistas',component:TransportistasComponent},
-      //{path:'produccion',component:ProduccionComponent},
-      //{path:'distribucion',component:DistribucionComponent}
+      {path:'recorridos',component:RecorridosComponent},
+      {path:'rutas',component:RutasComponent},
+      {path:'posiciones',component:PosicionesComponent},
+      {path:'vehiculos',component:VehiculosComponent}
     ]
   }
 ];

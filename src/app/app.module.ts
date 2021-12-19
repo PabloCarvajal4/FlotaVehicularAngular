@@ -33,7 +33,11 @@ import { ApiModule } from './api/api.module';
 import { environment } from 'src/environments/environment';
 import { TransportistasComponent } from './pages/transportistas/transportistas.component';
 import { LoginComponent } from './pages/login/login.component';
-//import { LoginComponent } from './pages/login/login.component';
+import { RutasComponent } from './pages/rutas/rutas.component';
+import { RecorridosComponent } from './pages/recorridos/recorridos.component';
+import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
+import { PosicionesComponent } from './pages/posiciones/posiciones.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 registerLocaleData(en);
 
@@ -48,7 +52,11 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     AppComponent,
     MenuComponent,
     TransportistasComponent,
-    LoginComponent
+    LoginComponent,
+    RutasComponent,
+    RecorridosComponent,
+    VehiculosComponent, 
+    PosicionesComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +78,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     NzFormModule,
     NzInputModule,
     NzInputNumberModule,
+    NzIconModule,
     ApiModule.forRoot({ rootUrl: environment.API }),
   ],
   providers: [
