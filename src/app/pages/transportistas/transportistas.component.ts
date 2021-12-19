@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { Transportistas } from 'src/app/api/models';
-import { TransportistasControllerService } from 'src/app/api/services';
+//import { Transportistas } from 'src/app/api/models';
+//import { TransportistasControllerService } from 'src/app/api/services';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Transportistas } from 'src/app/models/transportistas';
+import { TransportistasService } from 'src/app/services/transportistas.service';
 
 @Component({
   selector: 'app-transportistas',
@@ -17,7 +19,7 @@ export class TransportistasComponent {
   idModificar:string='';
 
   constructor(
-    private transportistasService:TransportistasControllerService,
+    private transportistasService:TransportistasService,
     private nzMessageService: NzMessageService,
     private formBuilder: FormBuilder
   ){this.buildForm();}
@@ -29,13 +31,22 @@ export class TransportistasComponent {
       licencia: ['']
     });
   }
-  ngOnInit():void{
-    this.getData();
+  ngOnInit(): void {
+    this.transportistasService.getAllTransportistas().toPromise().then(
+      (data: Transportistas[]) => this.listOfData = data
+    )
   }
-  getData():void{
-    this.transportistasService.find().subscribe(data=>this.listOfData=data);
+
+  delete(id: string) {
+    this.transportistasService.deleteTransportistas(id).toPromise().then(() => {
+      this.nzMessageService.warning('El registro fue eliminado con exito!');
+      this.listOfData = this.listOfData.filter(x => x.id !== id);
+    }, (error) => {
+      this.nzMessageService.error('El registro no pudo ser eliminado, por favor intente de nuevo');
+      console.error(error);
+    })
   }
-  
+
   cancel(): void {
     this.nzMessageService.info('Su registro sigue activo! =D')
   }
@@ -47,11 +58,12 @@ export class TransportistasComponent {
 
   close(): void {
     this.visible = false;
+    this.buildForm();
   }
 
   guardar(): void {
     if (this.accion) {
-      this.transportistasService.create().toPromise().then((data: any) => {
+      this.transportistasService.postTransportistas(this.form.value).toPromise().then((data: any) => {
         //this.listOfHardware.push(data);
         this.nzMessageService.success('El registro fue ingresado con exito!');
         this.listOfData = [...this.listOfData, data]
@@ -63,13 +75,11 @@ export class TransportistasComponent {
         console.error(error);
       })
     }else{
-      this.transportistasService.updateAll(this.form.value).toPromise().then(()=>{
+      this.transportistasService.putTransportistas(this.idModificar,this.form.value).toPromise().then(()=>{
         for(let elemento of this.listOfData.filter(x=>x.id===this.idModificar)){
-          elemento.dni=this.form.value.dni;
+          elemento.identidad=this.form.value.identidad;
           elemento.nombre= this.form.value.nombre;
-          elemento.apellido= this.form.value.apellido;
-          elemento.edad= this.form.value.edad;
-          elemento.cargo=this.form.value.cargo;
+          elemento.licencia= this.form.value.licencia;
         }
         this.visible = false;
         this.nzMessageService.success('El registro fue actualizado con exito!');
@@ -82,7 +92,7 @@ export class TransportistasComponent {
 
   modificar(item:Transportistas):void{
     this.accion=false;
-    this.idModificar=item.identidad;
+    this.idModificar=item.id;
     this.visible = true;
     this.form=this.formBuilder.group({
       identidad: [item.identidad],
@@ -97,4 +107,4 @@ export class TransportistasComponent {
       this.form?.controls[i].updateValueAndValidity();
     }
   }
-  }
+}

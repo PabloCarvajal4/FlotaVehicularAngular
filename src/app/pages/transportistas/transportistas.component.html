@@ -17,7 +17,9 @@
           <td>
             <a (click)="modificar(data)"><i nz-icon nzType="edit" nzTheme="outline"></i></a>
             <nz-divider nzType="vertical"></nz-divider>
-            <a><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+            <a nz-popconfirm nzPopconfirmTitle="Estas seguro de borrar el registro?" [nzIcon]="iconTpl" (nzOnConfirm)="delete(data.id)" (nzOnCancel)="cancel()" nzCancelText="No" nzOkText="Si">
+              <i nz-icon nzType="delete" nzTheme="outline"></i>
+            </a>
           </td>
         </tr>
       </tbody>
