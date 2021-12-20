@@ -66,7 +66,10 @@
             <nz-form-item>
               <nz-form-label>Licencia</nz-form-label>
               <nz-form-control>
-                <input formControlName="licencia" nz-input placeholder="" />
+                <nz-select formControlName="licencia" >
+                  <nz-option nzValue="Liviana" nzLabel="Liviana"></nz-option>
+                  <nz-option nzValue="Pesada" nzLabel="Pesada"></nz-option>
+                </nz-select>
               </nz-form-control>
             </nz-form-item>
           </div>

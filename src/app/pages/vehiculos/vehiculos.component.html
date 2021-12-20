@@ -76,7 +76,10 @@
               <nz-form-item>
                 <nz-form-label>Tipo Vehiculo</nz-form-label>
                 <nz-form-control>
-                  <input formControlName="tipo" nz-input placeholder="Camion/PickUp" />
+                  <nz-select formControlName="tipo" >
+                    <nz-option nzValue="pickUp" nzLabel="pickUp"></nz-option>
+                    <nz-option nzValue="Camion" nzLabel="Camion"></nz-option>
+                  </nz-select>
                 </nz-form-control>
               </nz-form-item>
             </div>         

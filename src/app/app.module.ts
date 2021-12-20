@@ -38,6 +38,7 @@ import { RecorridosComponent } from './pages/recorridos/recorridos.component';
 import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
 import { PosicionesComponent } from './pages/posiciones/posiciones.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 registerLocaleData(en);
 
@@ -79,6 +80,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     NzInputModule,
     NzInputNumberModule,
     NzIconModule,
+    NzSelectModule,
     ApiModule.forRoot({ rootUrl: environment.API }),
   ],
   providers: [
